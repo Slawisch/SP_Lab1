@@ -1,8 +1,10 @@
-﻿namespace SP_Lab1
+﻿using System;
+
+namespace SP_Lab1
 {
     public struct Drink
     {
-        private DrinkTypes _type;
+        public DrinkTypes Type { get; }
         public readonly int Price;
         public readonly int NeedCoffee;
         public readonly int NeedMilk;
@@ -11,7 +13,7 @@
 
         public Drink(DrinkTypes type, int price, int needCoffee, int needMilk, int needWater, int needSugar)
         {
-            _type = type;
+            Type = type;
             Price = price;
             NeedCoffee = needCoffee;
             NeedMilk = needMilk;

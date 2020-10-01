@@ -5,6 +5,8 @@
         Americano,
         Espresso,
         Latte,
-        Cappuccino
+        Cappuccino,
+        Ristretto,
+        Mocha
     }
 }
