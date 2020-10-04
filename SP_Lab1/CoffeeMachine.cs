@@ -21,9 +21,9 @@ namespace SP_Lab1
 
         public CoffeeMachine(string name = "NONAME", int maxCoffee = 1000, int maxMilk = 1000, int maxWater = 1000, int maxSugar = 1000)
         {
-            if (name == string.Empty)
-                throw new ArgumentException("Name can't be empty!");
-            name = name.Replace(" ", string.Empty);
+            ValidateName(ref name);
+            
+            ValidateMaxValues(maxCoffee, maxMilk, maxWater, maxSugar);
             
             Name = name;
             _maxCoffee = maxCoffee;
@@ -35,7 +35,6 @@ namespace SP_Lab1
             _drinks.AddDrink(DrinkTypes.Cappuccino, 20, 20, 25, 125, 15);
             _drinks.AddDrink(DrinkTypes.Espresso, 15, 25, 0, 100, 0);
             _drinks.AddDrink(DrinkTypes.Latte, 20, 15, 30, 120, 15);
-            _drinks.AddDrink(DrinkTypes.Mocha, 18, 25,20,130,10);
             _drinks.AddDrink(DrinkTypes.Ristretto,22,30,0,150, 5);
         }
 
@@ -55,7 +54,21 @@ namespace SP_Lab1
                 throw new ArgumentException("Not enough water!");
             if (drink.NeedSugar > _sugar)
                 throw new ArgumentException("Not enough sugar!");
-            if (payment <= 0) throw new ArgumentOutOfRangeException(nameof(payment));
+        }
+
+        private void ValidateName(ref string name)
+        {
+            if (name == string.Empty)
+                throw new ArgumentException("Name can't be empty!");
+            name = name.Replace(" ", string.Empty);
+        }
+        private void ValidateMaxValues(params int[] maxValues)
+        {
+            foreach (var item in maxValues)
+            {
+                if(item <= 0)
+                    throw new ArgumentException("Max value of ingradients must be more than zero");
+            }
         }
 
         public void MakeDrink(int payment, params DrinkTypes[] drinkTypes)

@@ -6,7 +6,6 @@
         Espresso,
         Latte,
         Cappuccino,
-        Ristretto,
-        Mocha
+        Ristretto
     }
 }
